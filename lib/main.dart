@@ -1,3 +1,7 @@
+import 'package:filmes_app/modules/home/home_bindings.dart';
+import 'package:filmes_app/modules/home/home_page.dart';
+import 'package:filmes_app/modules/movies/movies_bindings.dart';
+import 'package:filmes_app/modules/movies/movies_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +17,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      getPages: [
+        GetPage(
+          name: '/',
+          page: () => HomePage(),
+          binding: HomeBindings(),
+        ),
+        GetPage(
+          name: '/movies',
+          page: () => MoviesPage(),
+          binding: MoviesBindings(),
+        )
+      ],
     );
   }
 }
