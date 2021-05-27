@@ -14,12 +14,12 @@ class HomePage extends GetView<HomeController> {
           spacing: 10,
           children: [
             ElevatedButton.icon(
-              onPressed: () => Get.toNamed('/movies', arguments: 'Populares'),
+              onPressed: () => Get.toNamed('/movies', arguments: 'populares'),
               icon: Icon(Icons.pets_outlined),
               label: Text('Populares'),
             ),
             ElevatedButton.icon(
-              onPressed: () => Get.toNamed('/movies', arguments: 'Mais Votados'),
+              onPressed: () => Get.toNamed('/movies', arguments: 'mais_votados'),
               icon: Icon(Icons.pets_outlined),
               label: Text('Mais votados'),
             ),
