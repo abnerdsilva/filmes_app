@@ -13,7 +13,7 @@ class MoviesRepositoryImpl implements MoviesRepository {
 
       final dio = Dio();
       final result = await dio.get(
-        'https://api.themoviedb.org/3/movie/top_rated',
+        'https://api.themoviedb.org/3/movie/popular',
         queryParameters: {
           'api_key': apiKey,
           'language': 'pt-BR',
