@@ -17,75 +17,52 @@ class MoviesPage extends GetView<MoviesController> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('Total de filmes 0'),
+                child: Obx(() => Text('Total de filmes ${controller.totalPages}')),
               ),
               SizedBox(
                 height: 20,
               ),
-              Wrap(
-                spacing: 10,
-                alignment: WrapAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 150,
-                          child: Image.network(
-                            'https://thumbs.jusbr.com/imgs.jusbr.com/publications/artigos/images/capturar1452194585.JPG',
-                            fit: BoxFit.contain,
+              Obx(
+                () => Wrap(
+                  spacing: 10,
+                  alignment: WrapAlignment.center,
+                  children: [
+                    ...controller.movies
+                        .map(
+                          (f) => Padding(
+                            padding: EdgeInsets.all(8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: 150,
+                                  child: Image.network(
+                                    'https://image.tmdb.org/t/p/w500/${f.posterImageUrl}',
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                                Container(
+                                  constraints: BoxConstraints(maxWidth: 150),
+                                  child: Text(
+                                    f.title,
+                                    style: Theme.of(context).textTheme.subtitle2,
+                                  ),
+                                ),
+                                Container(
+                                  constraints: BoxConstraints(maxWidth: 150),
+                                  child: Text(
+                                    f.overview,
+                                    style: Theme.of(context).textTheme.subtitle2,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        Container(
-                          constraints: BoxConstraints(maxWidth: 150),
-                          child: Text(
-                            'data',
-                            style: Theme.of(context).textTheme.subtitle2,
-                          ),
-                        ),
-                        Container(
-                          constraints: BoxConstraints(maxWidth: 150),
-                          child: Text(
-                            'Descrição',
-                            style: Theme.of(context).textTheme.subtitle2,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 150,
-                          child: Image.network(
-                            'https://thumbs.jusbr.com/imgs.jusbr.com/publications/artigos/images/capturar1452194585.JPG',
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                        Container(
-                          constraints: BoxConstraints(maxWidth: 150),
-                          child: Text(
-                            'data',
-                            style: Theme.of(context).textTheme.subtitle2,
-                          ),
-                        ),
-                        Container(
-                          constraints: BoxConstraints(maxWidth: 150),
-                          child: Text(
-                            'Descrição',
-                            style: Theme.of(context).textTheme.subtitle2,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              )
+                        )
+                        .toList(),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
